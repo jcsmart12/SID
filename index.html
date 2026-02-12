@@ -49,8 +49,8 @@ body {
 }
 
 .enterBtn {
-    font-size: 20px; /* increased */
-    padding: 12px 30px; /* increased */
+    font-size: 20px;
+    padding: 12px 30px;
     border-radius: 12px;
     border: none;
     background: #ff4d6d;
@@ -60,10 +60,40 @@ body {
     max-width: 250px;
 }
 
+/* ENVELOPE ANIMATION */
+#envelope {
+    position: fixed;
+    width: 250px;
+    height: 150px;
+    background: #fff;
+    border: 2px solid #ff4d6d;
+    border-radius: 10px;
+    transform: rotateX(0deg);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    display: none;
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+}
+
+#envelope::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    border-bottom: 75px solid #ff4d6d;
+    transform-origin: top;
+    transform: rotateX(0deg);
+    transition: transform 1s ease;
+}
+
 /* MAIN CARD */
 .card {
     background: rgba(255, 255, 255, 0.35);
-    padding: 6vh 6vw; /* slightly more space */
+    padding: 6vh 6vw;
     border-radius: 25px;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -72,27 +102,27 @@ body {
     display: none;
     flex-direction: column;
     align-items: center;
-    font-size: 1.2em; /* increased base font size for all inside */
+    font-size: 1.2em;
 }
 
 .card h1 { 
     color: #ff4d6d; 
-    font-size: 2.8em; /* increased */
+    font-size: 2.8em;
 }
 
 .card p {
-    font-size: 1.3em; /* increased paragraph text */
+    font-size: 1.3em;
 }
 
 img.card-gif {
     width: 80%;
     max-width: 300px;
     border-radius: 12px;
-    margin: 20px auto; /* more space */
+    margin: 20px auto;
 }
 
 button {
-    font-size: 1.2em; /* bigger buttons */
+    font-size: 1.2em;
     padding: 12px 25px;
     border: none;
     border-radius: 12px;
@@ -110,7 +140,7 @@ button {
 /* MESSAGE BOX */
 #message {
     color: #d62828;
-    font-size: 1.5em; /* bigger message */
+    font-size: 1.5em;
     font-weight: bold;
     margin: 20px 0;
     padding: 15px 18px;
@@ -125,7 +155,7 @@ button {
 /* HEART ANIMATION */
 .heart {
     position: fixed;
-    font-size: 25px; /* bigger hearts */
+    font-size: 25px;
     animation: float 6s linear infinite;
 }
 
@@ -166,6 +196,9 @@ button {
     </div>
 </div>
 
+<!-- ENVELOPE ANIMATION -->
+<div id="envelope"></div>
+
 <!-- MAIN INVITATION -->
 <div class="card" id="mainCard">
 <h1>Magandang Gabi po, Tita 💐</h1>
@@ -188,8 +221,26 @@ button {
 
 <script>
 function enterSite() {
+    // Hide intro
     document.getElementById("introPage").style.display = "none";
-    document.getElementById("mainCard").style.display = "flex";
+    
+    // Show envelope
+    const envelope = document.getElementById("envelope");
+    envelope.style.display = "flex";
+    envelope.style.top = "50%";
+    envelope.style.left = "50%";
+    envelope.style.transform = "translate(-50%, -50%) rotateX(0deg)";
+
+    // Animate envelope "opening"
+    setTimeout(() => {
+        envelope.style.transform = "translate(-50%, -50%) rotateX(-180deg)";
+    }, 200);
+
+    // After animation, show main card
+    setTimeout(() => {
+        envelope.style.display = "none";
+        document.getElementById("mainCard").style.display = "flex";
+    }, 1200); // 1.2s animation
 }
 
 const noBtn = document.getElementById("noBtn");
@@ -219,7 +270,6 @@ const gifs = [
 noBtn.addEventListener("click", () => {
     clicks++;
 
-    // Move button outside the card
     noBtn.style.position = "fixed";
 
     const cardRect = mainCard.getBoundingClientRect();
