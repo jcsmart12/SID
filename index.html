@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hello po Tita, Valentine’s Permission Request 💐</title>
+
+<link rel="icon" type="image/gif" href="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif">
+
+<style>
+body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHprc2tzamlwa2pvb2x2c215cTQ2OG9uNW94azMyOGdodXI3Z2l5diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KxWDsHfQH6S8AnkZGo/giphy.gif");
+    background-size: cover;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+/* INTRO PAGE */
+#introPage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    z-index: 100;
+}
+
+.intro-card {
+    background: rgba(255,255,255,0.35);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.intro-card video {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.enterBtn {
+    font-size: 18px;
+    padding: 10px 25px;
+    border-radius: 10px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+}
+
+/* MAIN CARD */
+.card {
+    background: rgba(255, 255, 255, 0.35);
+    padding: 40px 30px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-width: 440px;
+    display: none;
+}
+
+h1 { color: #ff4d6d; }
+
+img.card-gif {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 12px;
+    margin: 15px auto;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#yesBtn { background: #ff4d6d; color: white; }
+#noBtn { background: white; }
+
+#message {
+    color: #d62828;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+
+.homeBtn {
+    background: #ffffff;
+    color: #000;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO PAGE -->
+<div id="introPage">
+    <div class="intro-card">
+        <video id="introVideo" controls>
+            <source src="SID.mp4" type="video/mp4">
+        </video>
+        <button class="enterBtn" onclick="enterSite()">💌 Proceed to Invitation</button>
+    </div>
+</div>
+
+<!-- MAIN INVITATION -->
+<div class="card" id="mainCard">
+<h1>Magandang Gabi po, Tita 💐</h1>
+
+<p>
+    Ako po si <strong>Jerald C. Casimsiman</strong> 😊<br><br>
+    Magalang ko po sanang hinihiling ang inyong pahintulot kung maaari ko pong ilabas ang inyong anak na si <strong>Sydneigh Lloret</strong> sa <strong>Araw ng mga Puso</strong> 💖<br><br>
+    Will take care of her po and will make that day memorable, at may pasalubong po paguwi 😄
+</p>
+
+<img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif" class="card-gif">
+
+<p id="message"></p>
+
+<button id="yesBtn">Oki, pwede enjoy 😊</button>
+<button id="noBtn">Gwaenchana, Hindi pwede Boiii 😐</button>
+
+<p style="font-size:14px;"> — Magalang na humihiling,<br><strong>Jerald</strong></p>
+</div>
+
+<script>
+function enterSite() {
+    document.getElementById("introPage").style.display = "none";
+    document.getElementById("mainCard").style.display = "block";
+}
+
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const message = document.getElementById("message");
+const gifImg = document.querySelector(".card-gif");
+
+let clicks = 0;
+
+const messages = [
+    "Will make her happy po, Tita 🚗",
+    "Will follow po ang ibibilin niyo 😇",
+    "Mag uupdate po sa inyo📱",
+    "Naiyak na po ako ahhhhh",
+    "May pasalubong po kayo 🌸"
+];
+
+const gifs = [
+    "https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif",
+    "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
+    "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif",
+    "https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif",
+    "https://media.giphy.com/media/4V3RuU0zSq1SC8Hh4x/giphy.gif"
+];
+
+noBtn.addEventListener("click", () => {
+    clicks++;
+
+    noBtn.style.position = "fixed";
+
+    const cardRect = mainCard.getBoundingClientRect();
+
+    let x, y, isInside;
+
+    do {
+        x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+        isInside =
+            x > cardRect.left &&
+            x < cardRect.right &&
+            y > cardRect.top &&
+            y < cardRect.bottom;
+
+    } while (isInside); // repeat until it's OUTSIDE the card
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    message.textContent = messages[clicks % messages.length];
+    gifImg.src = gifs[clicks % gifs.length];
+});
+
+yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = `
+        <div style="
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-family: 'Comic Sans MS', cursive;
+        ">
+            <div class="card" style="display:block;">
+                <h1 style="color:#ff4d6d;">Maraming Salamat po! 💖</h1>
+                <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" class="card-gif">
+                <h3>Pangako pong iingatan at will make her heart happy 🌸</h3>
+                <button class="homeBtn" onclick="goHome()">🏠 Home</button>
+                <div style="
+                    font-size:48px;
+                    font-weight:bold;
+                    color:#d62828;
+                    border:6px solid #d62828;
+                    padding:20px 30px;
+                    border-radius:12px;
+                    background:rgba(255,255,255,0.95);
+                    margin-top:20px;
+                    text-align:center;
+                ">TITA APPROVED ✔</div>
+            </div>
+        </div>
+    `;
+});
+
+function goHome() {
+    location.reload();   // Reload page → shows intro video again
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "💓";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 350);
+</script>
+
+</body>
+</html>
