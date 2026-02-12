@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -49,9 +49,9 @@ body {
 }
 
 .enterBtn {
-    font-size: 18px;
-    padding: 10px 25px;
-    border-radius: 10px;
+    font-size: 20px; /* increased */
+    padding: 12px 30px; /* increased */
+    border-radius: 12px;
     border: none;
     background: #ff4d6d;
     color: white;
@@ -63,7 +63,7 @@ body {
 /* MAIN CARD */
 .card {
     background: rgba(255, 255, 255, 0.35);
-    padding: 5vh 5vw;
+    padding: 6vh 6vw; /* slightly more space */
     border-radius: 25px;
     text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -72,24 +72,32 @@ body {
     display: none;
     flex-direction: column;
     align-items: center;
+    font-size: 1.2em; /* increased base font size for all inside */
 }
 
-h1 { color: #ff4d6d; font-size: 2.2em; }
+.card h1 { 
+    color: #ff4d6d; 
+    font-size: 2.8em; /* increased */
+}
+
+.card p {
+    font-size: 1.3em; /* increased paragraph text */
+}
 
 img.card-gif {
     width: 80%;
     max-width: 300px;
     border-radius: 12px;
-    margin: 15px auto;
+    margin: 20px auto; /* more space */
 }
 
 button {
-    font-size: 1em;
-    padding: 10px 20px;
+    font-size: 1.2em; /* bigger buttons */
+    padding: 12px 25px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
-    margin: 10px;
+    margin: 12px;
 }
 
 #yesBtn { background: #ff4d6d; color: white; }
@@ -102,14 +110,14 @@ button {
 /* MESSAGE BOX */
 #message {
     color: #d62828;
-    font-size: 1.2em;
+    font-size: 1.5em; /* bigger message */
     font-weight: bold;
-    margin: 15px 0;
-    padding: 12px 15px;
+    margin: 20px 0;
+    padding: 15px 18px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    min-height: 40px;
+    min-height: 50px;
     width: 90%;
     max-width: 400px;
 }
@@ -117,7 +125,7 @@ button {
 /* HEART ANIMATION */
 .heart {
     position: fixed;
-    font-size: 20px;
+    font-size: 25px; /* bigger hearts */
     animation: float 6s linear infinite;
 }
 
@@ -132,13 +140,16 @@ button {
     border: 2px solid black;
     color: #000;
     margin-top: 20px;
+    font-size: 1.2em;
+    padding: 12px 25px;
 }
 
 /* RESPONSIVE TEXT */
 @media screen and (max-width: 500px) {
-    h1 { font-size: 1.5em; }
-    #message { font-size: 1em; }
-    button { font-size: 0.9em; padding: 8px 15px; }
+    .card h1 { font-size: 2em; }
+    .card p { font-size: 1.1em; }
+    #message { font-size: 1.2em; }
+    button { font-size: 1em; padding: 10px 20px; }
 }
 </style>
 </head>
@@ -172,7 +183,7 @@ button {
 <button id="yesBtn">Oki, pwede enjoy 😊</button>
 <button id="noBtn">Gwaenchana, Hindi pwede Boiii 😐</button>
 
-<p style="font-size:14px;"> — Magalang na humihiling,<br><strong>Jerald</strong></p>
+<p style="font-size:1.2em;"> — Magalang na humihiling,<br><strong>Jerald</strong></p>
 </div>
 
 <script>
