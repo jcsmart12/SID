@@ -1,11 +1,9 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Hello po Tita, Valentine’s Permission Request 💐</title>
-
 <link rel="icon" type="image/gif" href="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif">
-
 <style>
 /* GENERAL BODY */
 body {
@@ -31,7 +29,6 @@ body {
     z-index: 100;
     padding: 15px;
 }
-
 .intro-card {
     background: rgba(255,255,255,0.35);
     padding: 20px;
@@ -41,13 +38,11 @@ body {
     max-width: 450px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
-
 .intro-card video {
     width: 100%;
     border-radius: 15px;
     margin-bottom: 15px;
 }
-
 .enterBtn {
     font-size: 20px;
     padding: 12px 30px;
@@ -60,34 +55,39 @@ body {
     max-width: 250px;
 }
 
-/* ENVELOPE ANIMATION */
-#envelope {
+/* LETTER ANIMATION */
+#letterContainer {
     position: fixed;
-    width: 250px;
-    height: 150px;
-    background: #fff;
-    border: 2px solid #ff4d6d;
-    border-radius: 10px;
-    transform: rotateX(0deg);
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    display: none;
-    z-index: 200;
+    inset: 0;
+    display: flex;
     justify-content: center;
     align-items: center;
+    perspective: 1000px;
+    display: none;
 }
-
-#envelope::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-left: 125px solid transparent;
-    border-right: 125px solid transparent;
-    border-bottom: 75px solid #ff4d6d;
+.letter {
+    width: 400px;
+    max-width: 90%;
+    height: 250px;
+    background: #fff;
+    border-radius: 15px;
+    transform-style: preserve-3d;
     transform-origin: top;
-    transform: rotateX(0deg);
-    transition: transform 1s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 20px;
+}
+.letter.open {
+    animation: openLetter 1s forwards;
+}
+@keyframes openLetter {
+    0% { transform: rotateX(90deg); opacity: 0; }
+    50% { transform: rotateX(-20deg); opacity: 1; }
+    100% { transform: rotateX(0deg); opacity: 1; }
 }
 
 /* MAIN CARD */
@@ -104,38 +104,12 @@ body {
     align-items: center;
     font-size: 1.2em;
 }
-
-.card h1 { 
-    color: #ff4d6d; 
-    font-size: 2.8em;
-}
-
-.card p {
-    font-size: 1.3em;
-}
-
-img.card-gif {
-    width: 80%;
-    max-width: 300px;
-    border-radius: 12px;
-    margin: 20px auto;
-}
-
-button {
-    font-size: 1.2em;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    margin: 12px;
-}
-
+.card h1 { color: #ff4d6d; font-size: 2.8em; }
+.card p { font-size: 1.3em; }
+img.card-gif { width: 80%; max-width: 300px; border-radius: 12px; margin: 20px auto; }
+button { font-size: 1.2em; padding: 12px 25px; border: none; border-radius: 12px; cursor: pointer; margin: 12px; }
 #yesBtn { background: #ff4d6d; color: white; }
-#noBtn {
-    border: 2px solid black;
-    background-color: white;
-    color: black;
-}
+#noBtn { border: 2px solid black; background-color: white; color: black; }
 
 /* MESSAGE BOX */
 #message {
@@ -158,7 +132,6 @@ button {
     font-size: 25px;
     animation: float 6s linear infinite;
 }
-
 @keyframes float {
     from { transform: translateY(100vh); opacity: 1; }
     to { transform: translateY(-10vh); opacity: 0; }
@@ -183,7 +156,6 @@ button {
 }
 </style>
 </head>
-
 <body>
 
 <!-- INTRO PAGE -->
@@ -192,65 +164,54 @@ button {
         <video id="introVideo" controls>
             <source src="SID.mp4" type="video/mp4">
         </video>
-        <button class="enterBtn" onclick="enterSite()">💌 Proceed to Invitation</button>
+        <button class="enterBtn" onclick="openLetter()">💌 Proceed to Invitation</button>
     </div>
 </div>
 
-<!-- ENVELOPE ANIMATION -->
-<div id="envelope"></div>
+<!-- LETTER ANIMATION -->
+<div id="letterContainer">
+    <div class="letter" id="letter">
+        💌 A Special Message for Tita 💌
+    </div>
+</div>
 
 <!-- MAIN INVITATION -->
 <div class="card" id="mainCard">
-<h1>Magandang Gabi po, Tita 💐</h1>
-
-<p>
-    Ako po si <strong>Jerald C. Casimsiman</strong> 😊<br><br>
-    Magalang ko po sanang hinihiling ang inyong pahintulot kung maaari ko pong ilabas ang inyong anak na si <strong>Sydneigh Lloret</strong> sa <strong>Araw ng mga Puso</strong> 💖<br><br>
-    Will take care of her po and will make that day memorable, at may pasalubong po paguwi 😄
-</p>
-
-<img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif" class="card-gif">
-
-<p id="message"></p>
-
-<button id="yesBtn">Oki, pwede enjoy 😊</button>
-<button id="noBtn">Gwaenchana, Hindi pwede Boiii 😐</button>
-
-<p style="font-size:1.2em;"> — Magalang na humihiling,<br><strong>Jerald</strong></p>
+    <h1>Magandang Gabi po, Tita 💐</h1>
+    <p>
+        Ako po si <strong>Jerald C. Casimsiman</strong> 😊<br><br>
+        Magalang ko po sanang hinihiling ang inyong pahintulot kung maaari ko pong ilabas ang inyong anak na si <strong>Sydneigh Lloret</strong> sa <strong>Araw ng mga Puso</strong> 💖<br><br>
+        Will take care of her po and will make that day memorable, at may pasalubong po paguwi 😄
+    </p>
+    <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif" class="card-gif">
+    <p id="message"></p>
+    <button id="yesBtn">Oki, pwede enjoy 😊</button>
+    <button id="noBtn">Gwaenchana, Hindi pwede Boiii 😐</button>
+    <p style="font-size:1.2em;"> — Magalang na humihiling,<br><strong>Jerald</strong></p>
 </div>
 
 <script>
-function enterSite() {
-    // Hide intro
+function openLetter() {
     document.getElementById("introPage").style.display = "none";
-    
-    // Show envelope
-    const envelope = document.getElementById("envelope");
-    envelope.style.display = "flex";
-    envelope.style.top = "50%";
-    envelope.style.left = "50%";
-    envelope.style.transform = "translate(-50%, -50%) rotateX(0deg)";
-
-    // Animate envelope "opening"
-    setTimeout(() => {
-        envelope.style.transform = "translate(-50%, -50%) rotateX(-180deg)";
-    }, 200);
+    const letterContainer = document.getElementById("letterContainer");
+    const letter = document.getElementById("letter");
+    letterContainer.style.display = "flex";
+    letter.classList.add("open");
 
     // After animation, show main card
     setTimeout(() => {
-        envelope.style.display = "none";
+        letterContainer.style.display = "none";
         document.getElementById("mainCard").style.display = "flex";
-    }, 1200); // 1.2s animation
+    }, 2000); // match animation duration
 }
 
+// NO BUTTON FUN
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const message = document.getElementById("message");
 const gifImg = document.querySelector(".card-gif");
 const mainCard = document.getElementById("mainCard");
-
 let clicks = 0;
-
 const messages = [
     "Will make her happy po, Tita 🚗",
     "Will follow po ang ibibilin niyo 😇",
@@ -258,7 +219,6 @@ const messages = [
     "Naiyak na po ako ahhhhh",
     "May pasalubong po kayo 🌸"
 ];
-
 const gifs = [
     "https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif",
     "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
@@ -269,24 +229,15 @@ const gifs = [
 
 noBtn.addEventListener("click", () => {
     clicks++;
-
+    // Move button outside the card
     noBtn.style.position = "fixed";
-
     const cardRect = mainCard.getBoundingClientRect();
     let x, y, isInside;
-
     do {
         x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
         y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-
-        isInside =
-            x > cardRect.left &&
-            x < cardRect.right &&
-            y > cardRect.top &&
-            y < cardRect.bottom;
-
+        isInside = x > cardRect.left && x < cardRect.right && y > cardRect.top && y < cardRect.bottom;
     } while (isInside);
-
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 
@@ -294,40 +245,21 @@ noBtn.addEventListener("click", () => {
     gifImg.src = gifs[clicks % gifs.length];
 });
 
+// YES BUTTON FINAL
 yesBtn.addEventListener("click", () => {
     document.body.innerHTML = `
-        <div style="
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            font-family: 'Comic Sans MS', cursive;
-            padding: 10px;
-        ">
-            <div class="card" style="display:flex; flex-direction:column; align-items:center;">
-                <h1 style="color:#ff4d6d;">Maraming Salamat po! 💖</h1>
-                <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" class="card-gif">
-                <h3 style="text-align:center;">Pangako pong iingatan at will make her heart happy 🌸</h3>
-                <button class="homeBtn" onclick="goHome()">🏠 Home</button>
-                <div style="
-                    font-size:4vw;
-                    font-weight:bold;
-                    color:#d62828;
-                    border:4px solid #d62828;
-                    padding:3vh 3vw;
-                    border-radius:12px;
-                    background:rgba(255,255,255,0.95);
-                    margin-top:20px;
-                    text-align:center;
-                ">TITA APPROVED ✔</div>
-            </div>
+    <div style=" height:100vh; display:flex; justify-content:center; align-items:center; font-family: 'Comic Sans MS', cursive; padding: 10px; ">
+        <div class="card" style="display:flex; flex-direction:column; align-items:center;">
+            <h1 style="color:#ff4d6d;">Maraming Salamat po! 💖</h1>
+            <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" class="card-gif">
+            <h3 style="text-align:center;">Pangako pong iingatan at will make her heart happy 🌸</h3>
+            <button class="homeBtn" onclick="goHome()">🏠 Home</button>
+            <div style=" font-size:4vw; font-weight:bold; color:#d62828; border:4px solid #d62828; padding:3vh 3vw; border-radius:12px; background:rgba(255,255,255,0.95); margin-top:20px; text-align:center; ">TITA APPROVED ✔</div>
         </div>
-    `;
+    </div>`;
 });
 
-function goHome() {
-    location.reload();
-}
+function goHome() { location.reload(); }
 
 function createHeart() {
     const heart = document.createElement("div");
@@ -340,6 +272,5 @@ function createHeart() {
 }
 setInterval(createHeart, 350);
 </script>
-
 </body>
 </html>
